@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 #include "error.hpp"
-//#include "Vector.hpp"
-//#include "Vector.cpp"
 #include "TVector.hpp"
 
 
@@ -22,7 +20,7 @@ Vector<double> change(Vector<double> tmp){
 
 int main()
 {
-  Vector<double> v3(4,1);
+  Vector<double> v3(4,2);
   Vector<double> v4={-4.3,4.5,-4.6,-4.7};
   Vector<double> v5(5,5);
 
@@ -34,6 +32,16 @@ int main()
   cout << "L2-Norm of the vector : "<< w1.twonorm()<<endl;
 	cout << "Linfinity-Norm of the vector : "<< w1.maxnorm()<<endl;
   cout<< "                        "<<endl;
+	cout<< "****************************"<<endl;
+	Vector<double> xxxxx{v3};
+	cout << xxxxx;
+	cout << v3;
+	v3.show();
+	double doot;
+	doot=dot(xxxxx,v3);
+	cout <<doot << endl;
+	cout<< "****************************"<<endl;
+
 
   // Affectation ==> Copy Assignment
   cout<< "Test Copy Assignment "<<endl;

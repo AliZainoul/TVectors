@@ -7,7 +7,6 @@ using namespace std;
 #include "error.hpp"
 
 template <class T>
-
 class Vector
 {
  private:
@@ -15,46 +14,54 @@ class Vector
   int M_size;
 
  public:
-   // Constructors
-   Vector();                           // Constructor 0: Default Constructor
-   Vector(int i);                      // Constructor 1: Size Constructor
-   Vector(int i, T v);                 // Constructor 2: Size-Value Constructor
-   Vector(initializer_list<T> lst);    // Constructor 3: List Constructor
-   Vector(Vector const &v);            // Constructor 4: Copy Constructor
-   Vector(Vector &&v);                 // Constructor 5: Move constructor
+  // Constructors
+  Vector();                           // Constructor 0: Default Constructor
+  Vector(int i);                      // Constructor 1: Size Constructor
+  Vector(int i, T v);                 // Constructor 2: Size-Value Constructor
+  Vector(initializer_list<T> lst);    // Constructor 3: List Constructor
+  Vector(Vector const &v);            // Constructor 4: Copy Constructor
+  Vector(Vector &&v);                 // Constructor 5: Move constructor
 
-   // Destructors
-   ~Vector();
+  // Destructors
+  ~Vector();
 
-   // void reset(double x);
-   void affiche();
-   int size() const;    // Return Size of the Vector
+  // void reset(double x);
+  void show();
+  int size() const;    // Return Size of the Vector
 
-   // Norms
-   T maxnorm() const;                // L-infinity norm
-   T twonorm() const;                // L-2 norm
+  // Norms
+  T maxnorm() const;                // L-infinity norm
+  T twonorm() const;                // L-2 norm
 
-   // Operators
-   Vector<T>& operator=(Vector<T> const &v);    // Assignment Operator
-   Vector<T>& operator=(Vector<T>&& v);         // Move Assignment Operator
-   Vector<T>& operator+=(const Vector<T>& vec); // Binary Operator, V += W
-   Vector<T>& operator-=(const Vector<T>& vec); // Binary Operator, V -= W
-   T& operator[](int i){return M_data[i];} // Subscript Operator left value
-   T operator[](int i) const{return M_data[i];} // Subscript Operator const
+  // Operators
+  Vector<T>& operator=(Vector<T> const &v);    // Assignment Operator
+  Vector<T>& operator=(Vector<T>&& v);         // Move Assignment Operator
+  Vector<T>& operator+=(const Vector<T>& vec); // Binary Operator, V += W
+  Vector<T>& operator-=(const Vector<T>& vec); // Binary Operator, V -= W
+  T& operator[](int i){return M_data[i];} // Subscript Operator left value
+  T operator[](int i) const{return M_data[i];} // Subscript Operator const
 
-   // Friends Functions
-   friend T dot(const Vector<T>& v1, const Vector<T>& v2);  // Dot product
-   friend Vector<T> operator*(T, const Vector<T>&);   // Scalar-Vector Product
-   friend Vector<T> operator*(const Vector<T>&, T);   // Vector-Scalar Product
-   friend Vector<T> operator+(const Vector<T>&);                 // Unary Operator, V = +W
-   friend Vector<T> operator-(const Vector<T>&);                // Unary Operator, V = -W
-   friend Vector<T> operator+(const Vector<T>&, const Vector<T>&); // Binary Operator V = V1 + V2
-   friend Vector<T> operator-(const Vector<T>&, const Vector<T>&); // Binary Operator V = V1 - V2
-   template <class S>
-   friend std::ostream& operator<<(std::ostream&, const Vector<S>&); // '<<' Overload
+  // Friends Functions
+  template <class S>
+  friend S dot(const Vector<S>& v1, const Vector<S>& v2);  // Dot product
+  template <class S>
+  friend Vector<S> operator*(S, const Vector<S>&);   // Scalar-Vector Product
+  template <class S>
+  friend Vector<S> operator*(const Vector<S>&, S);   // Vector-Scalar Product
+  template <class S>
+  friend Vector<S> operator+(const Vector<S>&);                 // Unary Operator, V = +W
+  template <class S>
+  friend Vector<S> operator-(const Vector<S>&);                // Unary Operator, V = -W
+  template <class S>
+  friend Vector<S> operator+(const Vector<S>&, const Vector<S>&); // Binary Operator V = V1 + V2
+  template <class S>
+  friend Vector<S> operator-(const Vector<S>&, const Vector<S>&); // Binary Operator V = V1 - V2
+  template <class S>
+  friend std::ostream& operator<<(std::ostream&, const Vector<S>&); // '<<' Overload
 };
 
 // IMPLEMENTATION
+
 // Constructor 0 - Default Constructor
 // Usage: Vector V();
 template<class T>
@@ -112,9 +119,24 @@ Vector<T>::~Vector(){delete[] M_data;}
 
 // Show Function
 template<class T>
-void Vector<T>::affiche(){
-  // cout << "Taille du vecteur: "<< M_size<< "\n";
-  for(int i=0; i<M_size; i++) cout<<i<<" "<<M_data[i]<<endl;
+void Vector<T>::show(){
+  cout << "Vector's Size: "<< M_size<< endl;
+	cout << " Index : ";
+	cout << " [ " ;
+  for(int i=0; i<M_size; i++)
+	{
+		cout << "  " << i+1	<< "  ";
+	}
+	cout << " ] " ;
+	cout << endl;
+	cout << " Value : ";
+	cout << " [ " ;
+	for(int i=0; i<M_size; i++)
+	{
+		cout << "  " <<M_data[i] << "  ";
+	}
+	cout << " ] " ;
+	cout << endl;
 }
 
 template<class T>
